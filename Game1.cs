@@ -2,6 +2,8 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
+using Spaceship.Content;
+
 namespace Spaceship
 {
     public class Game1 : Game
@@ -14,6 +16,7 @@ namespace Spaceship
         Texture2D spaceSprite;
         SpriteFont gameFont;
         SpriteFont timerFont;
+        Ship player = new Ship();
 
         public Game1()
         {
@@ -24,7 +27,9 @@ namespace Spaceship
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            _graphics.PreferredBackBufferWidth = 1280;
+            _graphics.PreferredBackBufferHeight = 720;
+            _graphics.ApplyChanges();
 
             base.Initialize();
         }
@@ -57,6 +62,7 @@ namespace Spaceship
 
             _spriteBatch.Begin();
             _spriteBatch.Draw(spaceSprite, new Vector2(0, 0), Color.White);
+            _spriteBatch.Draw(shipSprite, new Vector2(player.position.X - 34, player.position.Y - 50), Color.White);
             _spriteBatch.End();
 
             base.Draw(gameTime);
